@@ -6,219 +6,211 @@
     <title>Summit | Keon Smith</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
         :root {
-            --neon-white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.15);
+            --bg-color: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-hover: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.1);
+            --neon: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            color: white;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('SummitBanner.png') no-repeat center center fixed;
+            padding: 0;
+            background: var(--bg-color);
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                url('SummitBanner.png');
             background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            min-height: 100vh;
         }
 
-        /* Glassmorphism Utility */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 30px;
+        .wrapper {
             width: 100%;
-            max-width: 700px;
+            max-width: 450px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Profile Header */
+        .profile-container {
             margin-bottom: 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        /* Section 1: Entry */
-        .header-flex {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .pfp {
-            width: 80px;
-            height: 80px;
+        .logo-img {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            border: 2px solid var(--neon-white);
+            border: 2px solid var(--border);
+            padding: 5px;
+            margin-bottom: 15px;
             object-fit: cover;
         }
 
-        .title-area h1 {
-            font-size: 3rem;
-            margin: 0;
-            text-transform: uppercase;
-            font-weight: 900;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5);
-        }
-
-        .owner-tag {
-            opacity: 0.52;
-            font-size: 0.9rem;
-            margin-top: -5px;
-        }
-
-        .subheading {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #e0e0e0;
-        }
-
-        /* Section 2: Contact */
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 15px 0;
-            font-size: 1.1rem;
-        }
-        
-        .contact-note {
-            font-style: italic;
-            font-size: 0.9rem;
-            color: #ffd700; /* Subtle gold for importance */
-            margin-top: 10px;
-        }
-
-        /* Section 3: Services */
-        .service-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        .title-neon {
+            font-size: 2.2rem;
             font-weight: 800;
-            text-shadow: 0 0 8px #fff;
+            margin: 0;
+            letter-spacing: -1px;
+            text-shadow: 0 0 15px rgba(255,255,255,0.4);
+        }
+
+        .owner-sub {
+            font-size: 0.85rem;
+            opacity: 0.52;
             margin-bottom: 20px;
         }
 
-        .service-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            text-align: left;
+        .bio {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #ccc;
+            background: var(--glass);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
         }
 
-        .service-category h3 {
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 5px;
+        /* Section Titles */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 35px 0 15px;
+            opacity: 0.6;
+        }
+
+        /* Link/Service Buttons */
+        .link-card {
             display: flex;
             align-items: center;
-            gap: 8px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: white;
+            backdrop-filter: blur(10px);
         }
 
-        .price-list {
-            list-style: none;
-            padding: 0;
+        .link-card:hover {
+            background: var(--glass-hover);
+            transform: translateY(-2px);
+            border-color: rgba(255,255,255,0.3);
         }
 
-        .price-list li {
-            margin: 8px 0;
-            font-size: 0.95rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .notes-box {
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px dashed rgba(255,255,255,0.3);
-            font-size: 0.85rem;
-            text-align: left;
+        .link-icon {
+            margin-right: 15px;
             opacity: 0.8;
         }
 
-        @media (max-width: 600px) {
-            .service-grid { grid-template-columns: 1fr; }
-            .title-area h1 { font-size: 2rem; }
+        .link-text {
+            flex-grow: 1;
+            text-align: left;
+            font-weight: 600;
         }
+
+        .price-tag {
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            color: #eee;
+        }
+
+        /* Footer Notes */
+        .disclaimer {
+            font-size: 0.75rem;
+            opacity: 0.4;
+            margin-top: 40px;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="glass-card">
-        <div class="header-flex">
-            <img src="SummitLogo.png" alt="Logo" class="pfp">
-            <div class="title-area">
-                <h1>Summit</h1>
-                <p class="owner-tag">Owned by Keon Smith</p>
-            </div>
+    <div class="wrapper">
+        <div class="profile-container">
+            <img src="SummitLogo.png" alt="Summit" class="logo-img">
+            <h1 class="title-neon">SUMMIT</h1>
+            <div class="owner-sub">Owned by Keon Smith</div>
+            <p class="bio">I develop high-quality Discord bots, modern websites, and custom digital tools to elevate your projects.</p>
         </div>
-        <div class="subheading">
-            I am a specialized developer focusing on <strong>Discord bots</strong>, <strong>modern websites</strong>, and custom digital infrastructure to help your projects reach the peak.
-        </div>
-    </div>
 
-    <div class="glass-card">
-        <div class="service-title">
-            <i data-lucide="layers"></i>
-            <h2>SERVICES</h2>
-        </div>
+        <div class="section-label">Services</div>
         
-        <div class="service-grid">
-            <div class="service-category">
-                <h3><i data-lucide="code"></i> Web Dev</h3>
-                <ul class="price-list">
-                    <li>Starting Price <span>$15-20+</span></li>
-                </ul>
-
-                <h3><i data-lucide="bot"></i> Discord Bots</h3>
-                <ul class="price-list">
-                    <li>Small <span>$5-10</span></li>
-                    <li>Intermediate <span>$15-25</span></li>
-                    <li>High Level <span>$35+</span></li>
-                    <li>API Linking <span>$50+</span></li>
-                </ul>
-            </div>
-
-            <div class="service-category">
-                <h3><i data-lucide="file-text"></i> Documents</h3>
-                <ul class="price-list">
-                    <li>Copyright <span>$2</span></li>
-                    <li>Misc <span>$1.50</span></li>
-                </ul>
-
-                <h3><i data-lucide="server"></i> Hosting</h3>
-                <ul class="price-list">
-                    <li>Monthly Fee <span>$5</span></li>
-                </ul>
-            </div>
+        <div class="link-card">
+            <i data-lucide="code" class="link-icon"></i>
+            <span class="link-text">Web Development</span>
+            <span class="price-tag">$15+</span>
         </div>
 
-        <div class="notes-box">
-            <p>• Tax is applied to ALL orders.</p>
-            <p>• 5% discount on first orders over $45.</p>
-            <p>• Products started after payment confirmation.</p>
+        <div class="link-card">
+            <i data-lucide="bot" class="link-icon"></i>
+            <span class="link-text">Discord Bots</span>
+            <span class="price-tag">$5 - $50+</span>
         </div>
-    </div>
 
-    <div class="glass-card">
-        <h3>Contact Info</h3>
-        <div class="contact-item">
-            <i data-lucide="phone"></i>
-            <span>+1 443-537-5531</span>
+        <div class="link-card">
+            <i data-lucide="file-text" class="link-icon"></i>
+            <span class="link-text">Custom Documents</span>
+            <span class="price-tag">$1.50+</span>
         </div>
-        <div class="contact-item">
-            <i data-lucide="mail"></i>
-            <span>keonplays1213@gmail.com</span>
+
+        <div class="link-card">
+            <i data-lucide="server" class="link-icon"></i>
+            <span class="link-text">Monthly Hosting</span>
+            <span class="price-tag">$5/mo</span>
         </div>
-        <p class="contact-note">
-            <strong>Recommendation:</strong> Please text me instead of calling if you are reaching out via phone.
-        </p>
+
+        <div class="section-label">Connect</div>
+        
+        <a href="mailto:keonplays1213@gmail.com" class="link-card">
+            <i data-lucide="mail" class="link-icon"></i>
+            <span class="link-text">Email Me</span>
+        </a>
+
+        <div class="link-card">
+            <i data-lucide="message-square" class="link-icon"></i>
+            <span class="link-text">+1 443-537-5531 (Text Only)</span>
+        </div>
+
+        <div class="disclaimer">
+            Tax applied to all orders. 5% off first order over $45.<br>
+            Production begins after payment confirmation.<br>
+            &copy; 2026 Summit Business
+        </div>
     </div>
 
     <script>
-        // Initialize icons
         lucide.createIcons();
     </script>
 </body>
