@@ -9,150 +9,120 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
         :root {
-            --bg-color: #0a0a0a;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-hover: rgba(255, 255, 255, 0.1);
-            --border: rgba(255, 255, 255, 0.1);
-            --neon: #ffffff;
-        }
-
-        * {
-            box-sizing: border-box;
-            transition: all 0.3s ease;
+            --bg-color: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-top: rgba(255, 255, 255, 0.2);
+            --border-bottom: rgba(255, 255, 255, 0.05);
+            --web-color: #3b82f6; /* Blue */
+            --bot-color: #a855f7; /* Purple */
+            --doc-color: #10b981; /* Green */
+            --host-color: #f59e0b; /* Orange */
         }
 
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0;
             background: var(--bg-color);
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
-                url('SummitBanner.png');
+            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('SummitBanner.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .wrapper {
-            width: 100%;
-            max-width: 450px;
             padding: 40px 20px;
-            text-align: center;
         }
 
-        /* Profile Header */
-        .profile-container {
-            margin-bottom: 30px;
-        }
+        .wrapper { width: 100%; max-width: 500px; text-align: center; }
 
+        /* Profile Area */
         .logo-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            padding: 5px;
+            width: 110px; height: 110px;
+            border-radius: 30px; /* iPhone App Style */
+            border: 1px solid var(--border-top);
             margin-bottom: 15px;
-            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .title-neon {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 800;
             margin: 0;
-            letter-spacing: -1px;
-            text-shadow: 0 0 15px rgba(255,255,255,0.4);
+            text-shadow: 0 0 15px rgba(255,255,255,0.3);
         }
 
         .owner-sub {
             font-size: 0.85rem;
             opacity: 0.52;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .bio {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #ccc;
-            background: var(--glass);
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-        }
-
-        /* Section Titles */
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 35px 0 15px;
-            opacity: 0.6;
-        }
-
-        /* Link/Service Buttons */
+        /* Glossy Card Design */
         .link-card {
+            position: relative;
             display: flex;
             align-items: center;
             background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 16px 20px;
-            border-radius: 12px;
-            margin-bottom: 12px;
+            border-top: 1px solid var(--border-top);
+            border-left: 1px solid var(--border-bottom);
+            border-right: 1px solid var(--border-bottom);
+            border-bottom: 1px solid var(--border-bottom);
+            padding: 18px 22px;
+            border-radius: 18px;
+            margin-bottom: 15px;
             text-decoration: none;
             color: white;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+
+        /* The Gloss Reflection Effect */
+        .link-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(rgba(255,255,255,0.08), transparent);
+            pointer-events: none;
         }
 
         .link-card:hover {
-            background: var(--glass-hover);
-            transform: translateY(-2px);
-            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-3px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
-        .link-icon {
-            margin-right: 15px;
-            opacity: 0.8;
+        /* Icon Styling */
+        .icon-box {
+            width: 42px; height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
         }
 
-        .link-text {
-            flex-grow: 1;
-            text-align: left;
-            font-weight: 600;
+        .icon-web { background: rgba(59, 130, 246, 0.2); color: var(--web-color); }
+        .icon-bot { background: rgba(168, 85, 247, 0.2); color: var(--bot-color); }
+        .icon-doc { background: rgba(16, 185, 129, 0.2); color: var(--doc-color); }
+        .icon-host { background: rgba(245, 158, 11, 0.2); color: var(--host-color); }
+
+        .link-text { flex-grow: 1; text-align: left; }
+        .link-text div { font-weight: 600; font-size: 1rem; }
+        .link-text span { font-size: 0.75rem; opacity: 0.6; display: block; }
+
+        .price-label { font-size: 0.85rem; font-weight: 800; color: #fff; }
+
+        .section-label {
+            font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 3px; margin: 40px 0 15px; opacity: 0.4;
         }
 
-        .price-tag {
-            font-size: 0.8rem;
-            background: rgba(255,255,255,0.1);
-            padding: 4px 8px;
-            border-radius: 6px;
-            color: #eee;
-        }
-
-        /* Footer Notes */
         .disclaimer {
-            font-size: 0.75rem;
-            opacity: 0.4;
-            margin-top: 40px;
-            line-height: 1.6;
+            font-size: 0.75rem; opacity: 0.4; margin-top: 50px;
+            padding: 20px; line-height: 1.8;
+            border-top: 1px solid var(--border-bottom);
         }
-
-        .contact-info {
-            font-size: 0.9rem;
-            margin-top: 10px;
-            padding: 15px;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -162,56 +132,71 @@
             <img src="SummitLogo.png" alt="Summit" class="logo-img">
             <h1 class="title-neon">SUMMIT</h1>
             <div class="owner-sub">Owned by Keon Smith</div>
-            <p class="bio">I develop high-quality Discord bots, modern websites, and custom digital tools to elevate your projects.</p>
         </div>
 
-        <div class="section-label">Services</div>
+        <div class="section-label">Development Services</div>
         
         <div class="link-card">
-            <i data-lucide="code" class="link-icon"></i>
-            <span class="link-text">Web Development</span>
-            <span class="price-tag">$15+</span>
+            <div class="icon-box icon-web"><i data-lucide="code"></i></div>
+            <div class="link-text">
+                <div>Website Development</div>
+                <span>Modern, responsive sites</span>
+            </div>
+            <div class="price-label">$15-20+</div>
         </div>
 
         <div class="link-card">
-            <i data-lucide="bot" class="link-icon"></i>
-            <span class="link-text">Discord Bots</span>
-            <span class="price-tag">$5 - $50+</span>
+            <div class="icon-box icon-bot"><i data-lucide="bot"></i></div>
+            <div class="link-text">
+                <div>Discord Bots</div>
+                <span>Custom features & API links</span>
+            </div>
+            <div class="price-label">$5-50+</div>
         </div>
 
         <div class="link-card">
-            <i data-lucide="file-text" class="link-icon"></i>
-            <span class="link-text">Custom Documents</span>
-            <span class="price-tag">$1.50+</span>
+            <div class="icon-box icon-doc"><i data-lucide="file-text"></i></div>
+            <div class="link-text">
+                <div>Google Documents</div>
+                <span>Copyright & Miscellaneous</span>
+            </div>
+            <div class="price-label">$1.50+</div>
         </div>
 
         <div class="link-card">
-            <i data-lucide="server" class="link-icon"></i>
-            <span class="link-text">Monthly Hosting</span>
-            <span class="price-tag">$5/mo</span>
+            <div class="icon-box icon-host"><i data-lucide="server"></i></div>
+            <div class="link-text">
+                <div>Monthly Hosting</div>
+                <span>24/7 Uptime for your projects</span>
+            </div>
+            <div class="price-label">$5/mo</div>
         </div>
 
-        <div class="section-label">Connect</div>
+        <div class="section-label">Contact</div>
         
         <a href="mailto:keonplays1213@gmail.com" class="link-card">
-            <i data-lucide="mail" class="link-icon"></i>
-            <span class="link-text">Email Me</span>
+            <div class="icon-box" style="background: rgba(255,255,255,0.1);"><i data-lucide="mail"></i></div>
+            <div class="link-text">
+                <div>Email Keon</div>
+                <span>keonplays1213@gmail.com</span>
+            </div>
         </a>
 
         <div class="link-card">
-            <i data-lucide="message-square" class="link-icon"></i>
-            <span class="link-text">+1 443-537-5531 (Text Only)</span>
+            <div class="icon-box" style="background: rgba(255,255,255,0.1);"><i data-lucide="phone"></i></div>
+            <div class="link-text">
+                <div>Phone (Text Only)</div>
+                <span>+1 443-537-5531</span>
+            </div>
         </div>
 
         <div class="disclaimer">
-            Tax applied to all orders. 5% off first order over $45.<br>
-            Production begins after payment confirmation.<br>
-            &copy; 2026 Summit Business
+            • Tax is applied to ALL orders.<br>
+            • 5% discount on first orders over $45.<br>
+            • Product will be made after confirmation of payment.
         </div>
     </div>
 
-    <script>
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
